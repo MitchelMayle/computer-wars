@@ -123,33 +123,111 @@ namespace Day_Graphics
             Console.WriteLine(" ██████╔╝██║  ██║   ██║        ██║╚██████╔╝");
             Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═╝ ╚═════╝ ");
 
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗     ██╗███████╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ███║╚════██║");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝     ╚██║    ██╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝       ██║   ██╔╝ ");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║        ██║   ██║  ");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═╝   ╚═╝  ");
 
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗     ██╗ █████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ███║██╔══██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝     ╚██║╚█████╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝       ██║██╔══██╗");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║        ██║╚█████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═╝ ╚════╝ ");
 
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗     ██╗ █████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ███║██╔══██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝     ╚██║╚██████║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝       ██║██╔══██╗");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║        ██║╚█████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═╝ ╚════╝ ");
 
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
-            Console.WriteLine(" ");
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗     ██╗ █████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ███║██╔══██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝     ╚██║╚██████║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝       ██║ ╚═══██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║        ██║ █████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝        ╚═╝ ╚════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  ██████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔═████╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝██║██╔██║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ████╔╝██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗╚██████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚═════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  ██╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗███║");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝╚██║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝  ██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗ ██║");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚═╝");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗ ██████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗╚════██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝ █████╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ██╔═══╝ ");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗███████╗");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚══════╝");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗ ██████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗╚════██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝ █████╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝  ╚═══██╗");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗██████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗ ██╗  ██╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██║  ██║");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝███████║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ╚════██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗     ██║");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝     ╚═╝");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗ ███████╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔════╝");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝███████╗");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ╚════██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗███████║");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚══════╝");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  ██████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔════╝ ");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝███████╗ ");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ██╔═══██╗");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗╚██████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚═════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗ ███████╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗╚════██║");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝    ██╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝    ██╔╝ ");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗   ██║  ");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝   ╚═╝  ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  █████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔══██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝╚█████╔╝");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝ ██╔══██╗");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗╚█████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  █████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔══██╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝╚██████║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝      ██╔═══╝  ╚═══██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ███████╗ █████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝ ╚════╝ ");
+
+            Console.WriteLine(" ██████╗  █████╗ ██╗   ██╗    ██████╗  ██████╗ ");
+            Console.WriteLine(" ██╔══██╗██╔══██╗╚██╗ ██╔╝    ╚════██╗██╔═████╗");
+            Console.WriteLine(" ██║  ██║███████║ ╚████╔╝      █████╔╝██║██╔██║");
+            Console.WriteLine(" ██║  ██║██╔══██║  ╚██╔╝       ╚═══██╗████╔╝██║");
+            Console.WriteLine(" ██████╔╝██║  ██║   ██║       ██████╔╝╚██████╔╝");
+            Console.WriteLine(" ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═════╝  ╚═════╝ ");
+
 
         }
     }
