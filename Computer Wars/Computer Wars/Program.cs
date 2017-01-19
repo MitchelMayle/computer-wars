@@ -14,16 +14,23 @@ namespace Computer_Wars
                - Develop system for random events in between days
                     -- neighbors stealing half of items (10%)
                     -- neighbors stealing identity (5%)
-                    -- prices for items going up/down (80%)
+                    -- prices for items going up/down (90%)
                     -- bank returning high interest (10%)
                     -- wallet stolen at the airport (5%)
                     -- killed in plane crash (3%)
-                    -- flight delayed, lose a day (10%)s
+                    -- flight delayed, lose a day (10%)
 
-               - Dpecific city events
+               - Specific city events
                     -- traffic risk in LA (50%)
                     -- part prices low in LA chance (25%)
                     -- gambling in vegas lower odds
+
+               - Day change tasks
+                    -- set current city
+                    -- increase dayCount
+                    -- change prices
+                    -- calculate bank interest
+                    -- reset hasGambled
             */
 
             Dictionary<string, int> inventory = new Dictionary<string, int>()
@@ -53,7 +60,7 @@ namespace Computer_Wars
             };
 
             //variable declaration
-            int bankAccount = 500;
+            int wallet = 500;
             int depositAccount = 0;
             int dayCount = 1;
             string currentCity = "Cleveland";
@@ -61,12 +68,12 @@ namespace Computer_Wars
 
             //method to display title?
             Console.WriteLine();
-            Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗██╗");
-            Console.WriteLine(" ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝██║");
-            Console.WriteLine(" ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    ██║ █╗ ██║███████║██████╔╝███████╗██║");
-            Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║╚═╝");
-            Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║██╗");
-            Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝\n");
+            Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗ ██╗");
+            Console.WriteLine(" ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝ ██║");
+            Console.WriteLine(" ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    ██║ █╗ ██║███████║██████╔╝███████╗ ██║");
+            Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║ ╚═╝");
+            Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║ ██╗");
+            Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═╝\n");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("***** PRESS ANY KEY TO START *****");
@@ -75,23 +82,23 @@ namespace Computer_Wars
 
             // introduction, add more description and hazards
             Console.WriteLine();
-            Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗██╗");
-            Console.WriteLine(" ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝██║");
-            Console.WriteLine(" ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    ██║ █╗ ██║███████║██████╔╝███████╗██║");
-            Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║╚═╝");
-            Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║██╗");
-            Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝\n");
+            Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗ ██╗");
+            Console.WriteLine(" ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝ ██║");
+            Console.WriteLine(" ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    ██║ █╗ ██║███████║██████╔╝███████╗ ██║");
+            Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║ ╚═╝");
+            Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║ ██╗");
+            Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═╝\n");
 
             Console.WriteLine();
             Console.WriteLine("Your will be given 30 days to buy and sell computer parts to accumulate as much money as you can.\n");
-            Console.WriteLine("When you travel to a new location, one day will pass, and current prices of parts will change.");
+            Console.WriteLine("You can travel to a new location, which will take one day, and the current prices of parts will change.\n");
             Console.WriteLine("When you purchase parts, they will be magically transported to your house......");
             Console.WriteLine("But BEWARE! Your neighbors are theives and can steal some of your parts from your house at any time during your travels.\n");
 
-            Console.WriteLine("Every city has a casino where you can gamble once a day after Day 1 to try to win more money.\n");
+            Console.WriteLine("Starting on Day 2, you can visit the casino in each city to try and win more money.\n");
 
-            Console.WriteLine("You can also visit the bank to deposit money starting on Day 3 to attempt to gain interest on your deposit......");
-            Console.WriteLine("But BEWARE! If your theiving neighbors steal your identity, you could lose all of your money in your account.\n");
+            Console.WriteLine("Starting on Day 3, you can deposit money into your bank account to attempt to gain interest on your deposit......");
+            Console.WriteLine("But BEWARE! Your theiving neighbors may steal your identity and drain your bank account.\n");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("***** PRESS ANY KEY TO BEGIN DAY 1 *****");
@@ -112,9 +119,9 @@ namespace Computer_Wars
 
             // create method to hold this information to begin new day, calculate interest at beginning of day, set bools back
             Console.WriteLine($"Welcome to {currentCity}! You are currently on Day {dayCount} of 30.\n");
-            Console.WriteLine($"You have ${bankAccount} in your wallet.\n");
-            Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
-            Console.WriteLine($"Please make a selection:\n");
+            Console.WriteLine($"You have ${wallet} in your wallet.\n");
+            Console.WriteLine($"Your bank account has a balance of ${depositAccount}.\n");
+            Console.WriteLine($"Please make a selection (by number):\n");
 
             // create method to display choices
             Console.WriteLine("1. Check today's prices of parts");
@@ -123,19 +130,29 @@ namespace Computer_Wars
             Console.WriteLine("4. Sell parts online");
             Console.WriteLine("5. Deposit money at bank");
             Console.WriteLine("6. Gamble at the casino");
-            Console.WriteLine("7. Fly to a new city");
+            Console.WriteLine("7. Fly to a new city\n");
+            Console.Write("Selection #: ");
 
             //pause
             Console.ReadKey();
             Console.Clear();
 
             // create method to display prices
+            Console.WriteLine();
+            Console.WriteLine(" ██████╗ ██████╗ ██╗ ██████╗███████╗███████╗");
+            Console.WriteLine(" ██╔══██╗██╔══██╗██║██╔════╝██╔════╝██╔════╝");
+            Console.WriteLine(" ██████╔╝██████╔╝██║██║     █████╗  ███████╗");
+            Console.WriteLine(" ██╔═══╝ ██╔══██╗██║██║     ██╔══╝  ╚════██║");
+            Console.WriteLine(" ██║     ██║  ██║██║╚██████╗███████╗███████║");
+            Console.WriteLine(" ╚═╝     ╚═╝  ╚═╝╚═╝ ╚═════╝╚══════╝╚══════╝");
+            Console.WriteLine();
             Console.WriteLine("Current part prices:\n");
 
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
                 Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
             }
+
             Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
 
             //pause
@@ -143,7 +160,14 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method to display inventory
-            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine(" ██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗");
+            Console.WriteLine(" ██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝");
+            Console.WriteLine(" ██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝ ");
+            Console.WriteLine(" ██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  ");
+            Console.WriteLine(" ██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║   ");
+            Console.WriteLine(" ╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ");
+            Console.WriteLine();
 
             Console.WriteLine("You currently have the following parts at your house:\n");
 
@@ -159,28 +183,89 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method to display cities, check for current city
-            Console.WriteLine("Select the city that you want to fly to: (This will end your current day and change part prices)\n");
+            Console.WriteLine();
+            Console.WriteLine("  █████╗ ██╗██████╗ ██████╗  ██████╗ ██████╗ ████████╗");
+            Console.WriteLine(" ██╔══██╗██║██╔══██╗██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝");
+            Console.WriteLine(" ███████║██║██████╔╝██████╔╝██║   ██║██████╔╝   ██║   ");
+            Console.WriteLine(" ██╔══██║██║██╔══██╗██╔═══╝ ██║   ██║██╔══██╗   ██║   ");
+            Console.WriteLine(" ██║  ██║██║██║  ██║██║     ╚██████╔╝██║  ██║   ██║   ");
+            Console.WriteLine(" ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ");
+            Console.WriteLine();
+            Console.WriteLine("Select the city (by number) that you want to fly to: (This will end your current day and change part prices)\n");
             Console.WriteLine("1. Cleveland");
             Console.WriteLine("2. Pittsburgh");
             Console.WriteLine("3. Chicago");
             Console.WriteLine("4. Atlanta");
             Console.WriteLine("5. Seattle");
             Console.WriteLine("6. Las Vegas");
-            Console.WriteLine("7. Los Angeles");
+            Console.WriteLine("7. Los Angeles\n");
+            Console.Write("City Choice #: ");
+            string cityChoice = Console.ReadLine();
 
             //pause
             Console.ReadKey();
             Console.Clear();
 
-            // create method to go to bank
+            // create method to go to bank, deposit, withdraw
+            Console.WriteLine();
+            Console.WriteLine("  ██████╗     ██████╗   ██╗   ██╗   ");
+            Console.WriteLine(" ██╔════╝    ██╔════╝   ██║   ██║   ");
+            Console.WriteLine(" ██║  ███╗   ██║        ██║   ██║   ");
+            Console.WriteLine(" ██║   ██║   ██║        ██║   ██║   ");
+            Console.WriteLine(" ╚██████╔╝██╗╚██████╗██╗╚██████╔╝██╗");
+            Console.WriteLine("  ╚═════╝ ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝");
+            Console.WriteLine();
             Console.WriteLine("Welcome to Generic Credit Union.\n");
-            Console.WriteLine($"You have ${bankAccount} in your wallet.");
+            Console.WriteLine($"You have ${wallet} in your wallet.");
             Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
+            Console.WriteLine();
+            Console.Write("Would you like to make a (D)eposit, (W)ithdraw, or (E)xit?: ");
+            string bankChoice = Console.ReadLine();
 
             //pause
             Console.ReadKey();
             Console.Clear();
 
+            // create method for casino
+            Console.WriteLine();
+            Console.WriteLine("  ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗ ");
+            Console.WriteLine(" ██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗");
+            Console.WriteLine(" ██║     ███████║███████╗██║██╔██╗ ██║██║   ██║");
+            Console.WriteLine(" ██║     ██╔══██║╚════██║██║██║╚██╗██║██║   ██║");
+            Console.WriteLine(" ╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝");
+            Console.WriteLine("  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
+            Console.WriteLine();
+            Console.WriteLine($"Welcome to the {currentCity} casino!\n");
+
+            Console.WriteLine("You are only permitted to gamble once per day. Choose your amount to gamble wiseley.\n");
+
+            Console.Write("Please enter a dollar amount that you would like to gamble, or press \"E\" to exit the casino: $");
+            string casinoChoice = Console.ReadLine();
+
+            //pause
+            Console.ReadKey();
+            Console.Clear();
+
+            //create method for selling items
+            Console.WriteLine();
+            Console.WriteLine(" ███████╗███████╗██╗     ██╗         ██████╗  █████╗ ██████╗ ████████╗███████╗");
+            Console.WriteLine(" ██╔════╝██╔════╝██║     ██║         ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝");
+            Console.WriteLine(" ███████╗█████╗  ██║     ██║         ██████╔╝███████║██████╔╝   ██║   ███████╗");
+            Console.WriteLine(" ╚════██║██╔══╝  ██║     ██║         ██╔═══╝ ██╔══██║██╔══██╗   ██║   ╚════██║");
+            Console.WriteLine(" ███████║███████╗███████╗███████╗    ██║     ██║  ██║██║  ██║   ██║   ███████║");
+            Console.WriteLine(" ╚══════╝╚══════╝╚══════╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝");
+            Console.WriteLine();
+
+            Console.WriteLine("Current part prices:\n");
+
+            foreach (KeyValuePair<string, int> kvp in partsList)
+            {
+                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+            }
+
+            //pause
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
