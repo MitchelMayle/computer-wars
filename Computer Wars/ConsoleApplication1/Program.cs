@@ -19,23 +19,6 @@ namespace ConsoleApplication1
                 {"Flash Drives", 0}
             };
 
-            // create method to generate price values and class to hold current price values
-            Random changePrice = new Random();
-            int cpuPrice = changePrice.Next(1500, 4001);
-            int gpuPrice = changePrice.Next(601, 1601);
-            int hddPrice = changePrice.Next(201, 701);
-            int ramPrice = changePrice.Next(80, 301);
-            int fshPrice = changePrice.Next(10, 101);
-
-            Dictionary<string, int> partsList = new Dictionary<string, int>()
-            {
-                {"Processors", cpuPrice},
-                {"Graphics Cards", gpuPrice},
-                {"Hard Drives",hddPrice},
-                {"RAM Cards",ramPrice},
-                {"Flash Drives", fshPrice}
-            };
-
             //variable declaration
             int wallet = 500;
             int depositAccount = 0;
@@ -47,7 +30,7 @@ namespace ConsoleApplication1
 
 
             // parts stolen
-            Console.WriteLine("OH NO! Your theiving neighbor broke into your house during the night and stole half of your computer parts!");
+            Console.WriteLine("OH NO! Your thieving neighbor broke into your house during the night and stole half of your computer parts!");
 
             foreach(KeyValuePair<string, int> kvp in inventory)
             {
@@ -55,7 +38,7 @@ namespace ConsoleApplication1
             }
 
             // identity stolen
-            Console.WriteLine("OH NO! Your theiving neighbor found your personal information in your trash and used it to take all of your money from your bank account!");
+            Console.WriteLine("OH NO! Your thieving neighbor found your personal information in your trash and used it to take all of your money from your bank account!");
             stolenMoney = depositAccount;
             stolenIdentity = true;
             depositAccount = 0;
@@ -86,6 +69,7 @@ namespace ConsoleApplication1
             stolenIdentity = false;
             depositAccount += stolenMoney;
             stolenMoney = 0;
+
 
         }
     }

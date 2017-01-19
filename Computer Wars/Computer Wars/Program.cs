@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Computer_Wars.Graphics;
+using Computer_Wars.Events;
 
 namespace Computer_Wars
 {
@@ -11,16 +13,20 @@ namespace Computer_Wars
         static void Main(string[] args)
         {
             /* TO DO
+             * 
+             * -Create choice class to use method on choice given
+             * 
                - Develop system for random events in between days
                     -- neighbor stealing half of items (10%)
                     -- neighbor stealing identity (5%)
                     -- prices for items going up/down (90%)
+                        -- should all prices change every day?
                     -- bank returning high interest (10%)
                     -- wallet stolen at the airport (5%)
                     -- killed in plane crash (3%)
                     -- flight delayed, lose a day (10%)
                     -- recover stolen money from neighbor
-                    -- should prices change EVERY day?
+                    -- gain random amount of parts for free (10%)
 
                - Specific city events
                     -- traffic risk in LA (50%)
@@ -44,22 +50,6 @@ namespace Computer_Wars
                 {"Flash Drives", 0}
             };
 
-            // create method to generate price values and class to hold current price values
-            Random changePrice = new Random();
-            int cpuPrice = changePrice.Next(1500, 4001);
-            int gpuPrice = changePrice.Next(601, 1601);
-            int hddPrice = changePrice.Next(201, 701);
-            int ramPrice = changePrice.Next(80, 301);
-            int fshPrice = changePrice.Next(10, 101);
-
-            Dictionary<string, int> partsList = new Dictionary<string, int>()
-            {
-                {"Processors", cpuPrice},
-                {"Graphics Cards", gpuPrice},
-                {"Hard Drives",hddPrice},
-                {"RAM Cards",ramPrice},
-                {"Flash Drives", fshPrice}
-            };
 
             //variable declaration
             int wallet = 500;
@@ -78,9 +68,10 @@ namespace Computer_Wars
             Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║  ╚═╝");
             Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║  ██╗");
             Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  ╚═╝\n");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("***** PRESS ANY KEY TO START *****");
+            Console.WriteLine("v0.1A");
+            Console.WriteLine("Created by Mitchel Mayle III");
+            Console.WriteLine("\n\n\n\n\n\n");
+            Console.Write("***** PRESS ANY KEY TO START *****");
             Console.ReadKey();
             Console.Clear();
 
@@ -97,16 +88,16 @@ namespace Computer_Wars
             Console.WriteLine("You have 30 days to travel between cities to buy and sell computer parts to accumulate as much money as you can.\n");
             Console.WriteLine("When you travel between cities, one day will pass, and the price rate for each part will change for that day.\n");
             Console.WriteLine("When you purchase parts, they will be magically transported to your house......");
-            Console.WriteLine("But BEWARE! Your neighbor is a theif and can steal some of your parts from your house at any time during your travels.\n");
+            Console.WriteLine("But BEWARE! Your neighbor is a thief and can steal some of your parts from your house at any time during your travels.\n");
 
             Console.WriteLine("Starting on Day 2, you can visit the casino in each city to try and win more money.\n");
 
             Console.WriteLine("Starting on Day 3, you can deposit money into your bank account to attempt to gain interest on your deposit......");
-            Console.WriteLine("But BEWARE! Your theiving neighbor may steal your identity and empty your bank account.\n");
+            Console.WriteLine("But BEWARE! Your thieving neighbor may steal your identity and empty your bank account.\n");
             Console.WriteLine("You have a chance to encounter both good events and bad events at the start of every new day.\n");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("***** PRESS ANY KEY TO BEGIN DAY 1 *****");
+            Console.Write("***** PRESS ANY KEY TO BEGIN DAY 1 *****");
 
             //pause
             Console.ReadKey();
@@ -139,7 +130,7 @@ namespace Computer_Wars
             Console.WriteLine("Type \"EXIT\" to end the game");
 
             Console.Write("Selection #: ");
-            int daySelect = int.Parse(Console.ReadLine());
+            string daySelect = Console.ReadLine();
 
             //pause
             Console.ReadKey();
