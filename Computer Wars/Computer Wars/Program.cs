@@ -12,11 +12,11 @@ namespace Computer_Wars
         {
             Dictionary<string, int> inventory = new Dictionary<string, int>()
             {
-                {"Concert Tickets", 0},
-                {"KMFDM T-Shirts", 0},
-                {"Vinyl Records",0},
-                {"Nintendo Cartridges",0},
-                {"Video Game Consoles", 0}
+                {"Processors", 0},
+                {"Graphics Cards", 0},
+                {"Hard Drives",0},
+                {"RAM Cards",0},
+                {"Flash Drives", 0}
             };
 
             int bankAccount = 500;
@@ -24,12 +24,12 @@ namespace Computer_Wars
 
             //beginning of game
             Console.WriteLine();
-            Console.WriteLine(" ███╗   ███╗██╗████████╗ ██████╗██╗  ██╗███████╗██╗         ██╗    ██╗ █████╗ ██████╗ ███████╗██╗");
-            Console.WriteLine(" ████╗ ████║██║╚══██╔══╝██╔════╝██║  ██║██╔════╝██║         ██║    ██║██╔══██╗██╔══██╗██╔════╝██║");
-            Console.WriteLine(" ██╔████╔██║██║   ██║   ██║     ███████║█████╗  ██║         ██║ █╗ ██║███████║██████╔╝███████╗██║");
-            Console.WriteLine(" ██║╚██╔╝██║██║   ██║   ██║     ██╔══██║██╔══╝  ██║         ██║███╗██║██╔══██║██╔══██╗╚════██║╚═╝");
-            Console.WriteLine(" ██║ ╚═╝ ██║██║   ██║   ╚██████╗██║  ██║███████╗███████╗    ╚███╔███╔╝██║  ██║██║  ██║███████║██╗");
-            Console.WriteLine(" ╚═╝     ╚═╝╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝ \n");
+            Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗██╗");
+            Console.WriteLine(" ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝██║");
+            Console.WriteLine(" ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    ██║ █╗ ██║███████║██████╔╝███████╗██║");
+            Console.WriteLine(" ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    ██║███╗██║██╔══██║██╔══██╗╚════██║╚═╝");
+            Console.WriteLine(" ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    ╚███╔███╔╝██║  ██║██║  ██║███████║██╗");
+            Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝\n");
 
             Console.WriteLine("Press any key to begin.");
             Console.ReadKey();
@@ -61,6 +61,18 @@ namespace Computer_Wars
 
             // create method to generate price values
             Random changePrice = new Random();
+
+            // create method to display inventory
+            Console.Clear();
+
+            Console.WriteLine("You currently own the following items:\n");
+            
+            foreach(KeyValuePair<string, int> kvp in inventory)
+            {
+                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+            }
+
+            Console.WriteLine("\nPress any key to return to the main menu");
 
         }
     }
