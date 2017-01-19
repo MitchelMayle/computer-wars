@@ -12,13 +12,18 @@ namespace Computer_Wars
         {
             /* TO DO
                - Develop system for random events in between days
-                    -- neighbors stealing items
-                    -- neighbors stealing identity
-                    -- prices for items going up/down
-                    -- bank returning high interest
-                    -- killed in plane crash
-                    -- flight delayed, lose a day
-                    -- specific city events?
+                    -- neighbors stealing half of items (10%)
+                    -- neighbors stealing identity (5%)
+                    -- prices for items going up/down (80%)
+                    -- bank returning high interest (10%)
+                    -- wallet stolen at the airport (5%)
+                    -- killed in plane crash (3%)
+                    -- flight delayed, lose a day (10%)s
+
+               - Dpecific city events
+                    -- traffic risk in LA (50%)
+                    -- part prices low in LA chance (25%)
+                    -- gambling in vegas lower odds
             */
 
             Dictionary<string, int> inventory = new Dictionary<string, int>()
@@ -81,7 +86,7 @@ namespace Computer_Wars
             Console.WriteLine("Your will be given 30 days to buy and sell computer parts to accumulate as much money as you can.\n");
             Console.WriteLine("When you travel to a new location, one day will pass, and current prices of parts will change.");
             Console.WriteLine("When you purchase parts, they will be magically transported to your house......");
-            Console.WriteLine("But BEWARE! Your neighbors are theives and can steal all of your parts from your house at any time during your travels.\n");
+            Console.WriteLine("But BEWARE! Your neighbors are theives and can steal some of your parts from your house at any time during your travels.\n");
 
             Console.WriteLine("Every city has a casino where you can gamble once a day after Day 1 to try to win more money.\n");
 
@@ -107,7 +112,7 @@ namespace Computer_Wars
 
             // create method to hold this information to begin new day, calculate interest at beginning of day, set bools back
             Console.WriteLine($"Welcome to {currentCity}! You are currently on Day {dayCount} of 30.\n");
-            Console.WriteLine($"Your balance is ${bankAccount}.\n");
+            Console.WriteLine($"You have ${bankAccount} in your wallet.\n");
             Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
             Console.WriteLine($"Please make a selection:\n");
 
@@ -115,7 +120,7 @@ namespace Computer_Wars
             Console.WriteLine("1. Check today's prices of parts");
             Console.WriteLine("2. Check inventory at your house");
             Console.WriteLine("3. Buy parts");
-            Console.WriteLine("4. Sell parts");
+            Console.WriteLine("4. Sell parts online");
             Console.WriteLine("5. Deposit money at bank");
             Console.WriteLine("6. Gamble at the casino");
             Console.WriteLine("7. Fly to a new city");
@@ -153,8 +158,8 @@ namespace Computer_Wars
             Console.ReadKey();
             Console.Clear();
 
-            // create method to display cities
-            Console.WriteLine("Select a new city in which to travel:\n");
+            // create method to display cities, check for current city
+            Console.WriteLine("Select the city that you want to fly to: (This will end your current day and change part prices)\n");
             Console.WriteLine("1. Cleveland");
             Console.WriteLine("2. Pittsburgh");
             Console.WriteLine("3. Chicago");
@@ -162,6 +167,20 @@ namespace Computer_Wars
             Console.WriteLine("5. Seattle");
             Console.WriteLine("6. Las Vegas");
             Console.WriteLine("7. Los Angeles");
+
+            //pause
+            Console.ReadKey();
+            Console.Clear();
+
+            // create method to go to bank
+            Console.WriteLine("Welcome to Generic Credit Union.\n");
+            Console.WriteLine($"You have ${bankAccount} in your wallet.");
+            Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
+
+            //pause
+            Console.ReadKey();
+            Console.Clear();
+
         }
     }
 }
