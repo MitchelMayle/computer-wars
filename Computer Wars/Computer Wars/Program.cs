@@ -127,13 +127,9 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method to display inventory
-            eventAction.Inventory();
+            graphicPrint.Inventory();
             Console.WriteLine("You currently have the following parts at your house:\n");
-
-            foreach (KeyValuePair<string, int> kvp in inventory)
-            {
-                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
-            }
+            eventAction.Inventory(inventory);
 
             Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
 
@@ -142,14 +138,7 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method to display cities, check for current city
-            Console.WriteLine();
-            Console.WriteLine("  █████╗ ██╗██████╗ ██████╗  ██████╗ ██████╗ ████████╗");
-            Console.WriteLine(" ██╔══██╗██║██╔══██╗██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝");
-            Console.WriteLine(" ███████║██║██████╔╝██████╔╝██║   ██║██████╔╝   ██║   ");
-            Console.WriteLine(" ██╔══██║██║██╔══██╗██╔═══╝ ██║   ██║██╔══██╗   ██║   ");
-            Console.WriteLine(" ██║  ██║██║██║  ██║██║     ╚██████╔╝██║  ██║   ██║   ");
-            Console.WriteLine(" ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ");
-            Console.WriteLine();
+            graphicPrint.Airport();
             Console.WriteLine($"Welcome to the {currentCity} airport!");
             Console.WriteLine("Select the city (by number) that you want to fly to: (This will end your current day and change part prices)\n");
             Console.WriteLine("1. Cleveland");
@@ -168,14 +157,7 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method to go to bank, deposit, withdraw
-            Console.WriteLine();
-            Console.WriteLine("  ██████╗     ██████╗   ██╗   ██╗   ");
-            Console.WriteLine(" ██╔════╝    ██╔════╝   ██║   ██║   ");
-            Console.WriteLine(" ██║  ███╗   ██║        ██║   ██║   ");
-            Console.WriteLine(" ██║   ██║   ██║        ██║   ██║   ");
-            Console.WriteLine(" ╚██████╔╝██╗╚██████╗██╗╚██████╔╝██╗");
-            Console.WriteLine("  ╚═════╝ ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝");
-            Console.WriteLine();
+            graphicPrint.Bank();
             Console.WriteLine($"Welcome to Generic Credit Union of {currentCity}.\n");
             Console.WriteLine($"You have ${wallet} in your wallet.");
             Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
@@ -188,14 +170,7 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method for casino
-            Console.WriteLine();
-            Console.WriteLine("  ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗ ");
-            Console.WriteLine(" ██╔════╝██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗");
-            Console.WriteLine(" ██║     ███████║███████╗██║██╔██╗ ██║██║   ██║");
-            Console.WriteLine(" ██║     ██╔══██║╚════██║██║██║╚██╗██║██║   ██║");
-            Console.WriteLine(" ╚██████╗██║  ██║███████║██║██║ ╚████║╚██████╔╝");
-            Console.WriteLine("  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
-            Console.WriteLine();
+            graphicPrint.Casino();
             Console.WriteLine($"Welcome to the {currentCity} casino!\n");
 
             Console.WriteLine("You are only permitted to gamble once per day. Choose your amount to gamble wiseley.\n");
@@ -208,21 +183,11 @@ namespace Computer_Wars
             Console.Clear();
 
             //create method for selling items
-            Console.WriteLine();
-            Console.WriteLine(" ███████╗███████╗██╗     ██╗         ██████╗  █████╗ ██████╗ ████████╗███████╗");
-            Console.WriteLine(" ██╔════╝██╔════╝██║     ██║         ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝");
-            Console.WriteLine(" ███████╗█████╗  ██║     ██║         ██████╔╝███████║██████╔╝   ██║   ███████╗");
-            Console.WriteLine(" ╚════██║██╔══╝  ██║     ██║         ██╔═══╝ ██╔══██║██╔══██╗   ██║   ╚════██║");
-            Console.WriteLine(" ███████║███████╗███████╗███████╗    ██║     ██║  ██║██║  ██║   ██║   ███████║");
-            Console.WriteLine(" ╚══════╝╚══════╝╚══════╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝");
-            Console.WriteLine();
+            graphicPrint.SellParts();
 
             Console.WriteLine($"Today's part prices in {currentCity}:\n");
 
-            foreach (KeyValuePair<string, int> kvp in partsList)
-            {
-                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
-            }
+            eventAction.PartList(partsList);
 
             Console.WriteLine();
             Console.Write("Select a part you would like to sell: (Type \"EXIT\" to return to the menu: ");
@@ -235,21 +200,8 @@ namespace Computer_Wars
             Console.Clear();
 
             // create method for buying items
-            Console.WriteLine();
-            Console.WriteLine(" ██████╗ ██╗   ██╗██╗   ██╗    ██████╗  █████╗ ██████╗ ████████╗███████╗");
-            Console.WriteLine(" ██╔══██╗██║   ██║╚██╗ ██╔╝    ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝");
-            Console.WriteLine(" ██████╔╝██║   ██║ ╚████╔╝     ██████╔╝███████║██████╔╝   ██║   ███████╗");
-            Console.WriteLine(" ██╔══██╗██║   ██║  ╚██╔╝      ██╔═══╝ ██╔══██║██╔══██╗   ██║   ╚════██║");
-            Console.WriteLine(" ██████╔╝╚██████╔╝   ██║       ██║     ██║  ██║██║  ██║   ██║   ███████║");
-            Console.WriteLine(" ╚═════╝  ╚═════╝    ╚═╝       ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝");
-            Console.WriteLine();
-
-            Console.WriteLine($"Today's part prices in {currentCity}:\n");
-
-            foreach (KeyValuePair<string, int> kvp in partsList)
-            {
-                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
-            }
+            graphicPrint.BuyParts();
+            eventAction.PartList(partsList);
 
             Console.WriteLine();
             Console.Write("Select a part you would like to purchase: (Type \"EXIT\" to return to the menu: ");

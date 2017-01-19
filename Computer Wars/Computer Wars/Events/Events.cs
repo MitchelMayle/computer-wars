@@ -74,22 +74,26 @@ namespace Computer_Wars.Events
 
             return partsList;
         }
-
-        // inventory
-        public void Inventory()
+        
+        // print parts list
+        public Dictionary<string, int> PartList(Dictionary<string, int> partsList)
         {
-            Console.WriteLine();
-            Console.WriteLine(" ██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗");
-            Console.WriteLine(" ██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝");
-            Console.WriteLine(" ██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝ ");
-            Console.WriteLine(" ██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  ");
-            Console.WriteLine(" ██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║   ");
-            Console.WriteLine(" ╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   \n");
-
-
+            foreach (KeyValuePair<string, int> kvp in partsList)
+            {
+                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+            }
+            return partsList;
         }
 
-        // parts stolen from your house
+        // print inventory
+        public Dictionary<string, int> Inventory(Dictionary<string, int> inventory)
+        {
+            foreach (KeyValuePair<string, int> kvp in inventory)
+            {
+                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+            }
+        }
+
 
 
     }
