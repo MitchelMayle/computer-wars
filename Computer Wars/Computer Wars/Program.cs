@@ -150,14 +150,11 @@ namespace Test_Wars
                         Random gambleRandom = new Random();
                         int gambleOdds = gambleRandom.Next(1, 101);
 
-                        if (gambleOdds > 70)
+                        if (gambleOdds > 60)
                         {
-                            wallet -= gambleAmount;
-                            double winPercentage = doTask.Gamble();
-                            Console.WriteLine($" YOU WON! Payout was {winPercentage}% of ${gambleAmount}");
-                            winPercentage *= 0.1;
-                            int convertWinnings = (int)gambleAmount * (int)winPercentage;
-                            wallet += convertWinnings;
+                            int gambleWinnings = gambleRandom.Next(gambleAmount / 2, gambleAmount);
+                            wallet += gambleWinnings;
+                            Console.WriteLine($" YOU WON! You risked ${gambleAmount} and won ${gambleWinnings}.");
 
                         }
 
