@@ -48,7 +48,7 @@ namespace Computer_Wars.Tasks
         // version and name first page
         public void DisplaySplashPage()
         {
-            Console.WriteLine(" v0.2A");
+            Console.WriteLine(" v0.21A");
             Console.WriteLine(" Created by Mitchel Mayle III");
             Console.WriteLine("\n\n\n\n\n\n");
             Console.Write(" ***** PRESS ANY KEY TO START *****");
@@ -77,15 +77,6 @@ namespace Computer_Wars.Tasks
                 Console.WriteLine($" {kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
             }
         }
-
-        //gambling
-        public double Gamble()
-        {
-            Random gambleRandom = new Random();
-            double gamblePercentage = gambleRandom.Next(20, 31);
-
-            return gamblePercentage;
-        }
-
+ 
     }
 }
