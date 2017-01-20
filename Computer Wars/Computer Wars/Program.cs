@@ -36,25 +36,25 @@ namespace Test_Wars
             printArt.Title();
             doTask.DisplayInstructions();
 
-
+            //game begins
             while (dayCount < 31)
             {
                 //main menu
                 Menu:
                 Console.Clear();
                 printArt.PrintDayGraphic(dayCount);
-                Console.WriteLine($"You have {30 - dayCount} days remaining.\n");
-                Console.WriteLine($"You have ${wallet} in your wallet.\n");
-                Console.WriteLine($"Please make a selection (by number):\n");
-                Console.WriteLine("1. Check today's prices of parts");
-                Console.WriteLine("2. Check inventory at your house");
-                Console.WriteLine("3. Buy parts");
-                Console.WriteLine("4. Sell parts");
-                Console.WriteLine("5. Deposit money at bank");
-                Console.WriteLine("6. Gamble at the casino");
-                Console.WriteLine("7. Fly to a new city\n");
-                Console.WriteLine("Type \"EXIT\" to end the game\n");
-                Console.Write("Selection #: ");
+                Console.WriteLine($" You have {30 - dayCount} days remaining.\n");
+                Console.WriteLine($" You have ${wallet} in your wallet.\n");
+                Console.WriteLine($" Please make a selection (by number):\n");
+                Console.WriteLine(" 1. Check today's prices of parts");
+                Console.WriteLine(" 2. Check inventory at your house");
+                Console.WriteLine(" 3. Buy parts");
+                Console.WriteLine(" 4. Sell parts");
+                Console.WriteLine(" 5. Deposit money at bank");
+                Console.WriteLine(" 6. Gamble at the casino");
+                Console.WriteLine(" 7. Fly to a new city\n");
+                Console.WriteLine(" Type \"EXIT\" to end the game\n");
+                Console.Write(" Selection #: ");
 
                 string menuInput = Console.ReadLine();
 
@@ -74,13 +74,14 @@ namespace Test_Wars
                     goto Menu;
                 }
 
+                // menu options
                 switch (menuChoice)
                 {
                     case 1: // CHECK PRICES
                         Console.Clear();
                         printArt.Prices();
                         doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -89,7 +90,7 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.Inventory();
                         doTask.DisplayParts(inventory);
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -98,8 +99,8 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.BuyParts();
                         doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n\nThis function has not been implemented.");
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine("\n\n This function has not been implemented.");
+                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -108,8 +109,8 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.SellParts();
                         doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n\nThis function has not been implemented.");
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine("\n\n This function has not been implemented.");
+                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -117,8 +118,8 @@ namespace Test_Wars
                     case 5: //BANK
                         Console.Clear();
                         printArt.Bank();
-                        Console.WriteLine("\n\nThis function has not been implemented.");
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine("\n\n This function has not been implemented.");
+                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -126,8 +127,47 @@ namespace Test_Wars
                     case 6: //CASINO
                         Console.Clear();
                         printArt.Casino();
-                        Console.WriteLine("\n\nThis function has not been implemented.");
-                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.WriteLine($"\n You currently have ${wallet} in your wallet.");
+
+                        int gambleAmount;
+                        while (true)
+                        {
+                            Console.Write("\n Enter the amount that you would like to gamble: $");
+                            gambleAmount = int.Parse(Console.ReadLine());
+
+                            // check for valid gamble amount
+                            if (gambleAmount > wallet)
+                            {
+                                Console.WriteLine($" You do not have ${gambleAmount}, you have ${wallet}.\n");
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                        // new random percentage of chance
+                        Random gambleRandom = new Random();
+                        int gambleOdds = gambleRandom.Next(1, 101);
+
+                        if (gambleOdds > 70)
+                        {
+                            wallet -= gambleAmount;
+                            double winPercentage = doTask.Gamble();
+                            Console.WriteLine($" YOU WON! Payout was {winPercentage}% of ${gambleAmount}");
+                            winPercentage *= 0.1;
+                            int convertWinnings = (int)gambleAmount * (int)winPercentage;
+                            wallet += convertWinnings;
+
+                        }
+
+                        else
+                        {
+                            Console.WriteLine($" OH NO! You lost ${gambleAmount}.");
+                            wallet -= gambleAmount;
+                        }
+
+
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -135,7 +175,7 @@ namespace Test_Wars
                     case 7: //NEW CITY
                         Console.Clear();
                         printArt.Airport();
-                        Console.WriteLine("\n\nFlying to a new city...........");
+                        Console.WriteLine("\n\n Flying to a new city...........");
                         Console.ReadKey();
 
                         // perform tasks after day has ended
@@ -153,7 +193,7 @@ namespace Test_Wars
             //end of game stuff
             Console.Clear();
             printArt.GameOver();
-            Console.WriteLine($"\n\nYou ended with ${wallet}.");
+            Console.WriteLine($"\n\n You ended with ${wallet}.");
             Console.ReadKey();
         }
     }

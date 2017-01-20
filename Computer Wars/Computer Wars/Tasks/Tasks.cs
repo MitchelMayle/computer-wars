@@ -48,10 +48,10 @@ namespace Computer_Wars.Tasks
         // version and name first page
         public void DisplaySplashPage()
         {
-            Console.WriteLine("v0.2A");
-            Console.WriteLine("Created by Mitchel Mayle III");
+            Console.WriteLine(" v0.2A");
+            Console.WriteLine(" Created by Mitchel Mayle III");
             Console.WriteLine("\n\n\n\n\n\n");
-            Console.Write("***** PRESS ANY KEY TO START *****");
+            Console.Write(" ***** PRESS ANY KEY TO START *****");
             Console.ReadKey();
             Console.Clear();
         }
@@ -60,25 +60,31 @@ namespace Computer_Wars.Tasks
         public void DisplayInstructions()
         {
             Console.WriteLine();
-            Console.WriteLine("You have 30 days to travel between cities to buy and sell computer parts to accumulate as much money as you can.\n");
-            Console.WriteLine("When you travel to a different city, one day will pass, and the price rate for each part will change for that day.\n");
-            Console.WriteLine("When you purchase parts, they will be magically transported to your house......");
+            Console.WriteLine(" You have 30 days to travel between cities to buy and sell computer parts to accumulate as much money as you can.\n");
+            Console.WriteLine(" When you travel to a different city, one day will pass, and the price rate for each part will change for that day.\n");
             Console.WriteLine();
             Console.WriteLine();
-            Console.Write("***** PRESS ANY KEY TO BEGIN DAY 1 *****");
+            Console.Write(" ***** PRESS ANY KEY TO BEGIN DAY 1 *****");
             Console.ReadKey();
             Console.Clear();
         }
 
-
-
-        // print parts list
+        // print parts or inventory list
         public void DisplayParts(Dictionary<string, int> partsList)
         {
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
-                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+                Console.WriteLine($" {kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
             }
+        }
+
+        //gambling
+        public double Gamble()
+        {
+            Random gambleRandom = new Random();
+            double gamblePercentage = gambleRandom.Next(20, 31);
+
+            return gamblePercentage;
         }
 
     }
