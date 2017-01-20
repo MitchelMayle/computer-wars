@@ -47,7 +47,7 @@ namespace Test_Wars
                 Console.WriteLine($" You have ${wallet} in your wallet.\n");
                 Console.WriteLine($" Please make a selection (by number):\n");
                 Console.WriteLine(" 1. Check today's prices of parts");
-                Console.WriteLine(" 2. Check inventory at your house");
+                Console.WriteLine(" 2. Check inventory");
                 Console.WriteLine(" 3. Buy parts");
                 Console.WriteLine(" 4. Sell parts");
                 Console.WriteLine(" 5. Deposit money at bank");
@@ -125,15 +125,27 @@ namespace Test_Wars
                         break;
 
                     case 6: //CASINO
+                        Casino:
                         Console.Clear();
                         printArt.Casino();
                         Console.WriteLine($"\n You currently have ${wallet} in your wallet.");
 
                         int gambleAmount;
+
                         while (true)
                         {
                             Console.Write("\n Enter the amount that you would like to gamble: $");
-                            gambleAmount = int.Parse(Console.ReadLine());
+
+                            string gambleInput;
+                            gambleInput = Console.ReadLine();
+
+                            // checking for valid int input
+                            checkInput = int.TryParse(gambleInput, out gambleAmount);
+
+                            if (!checkInput)
+                            {
+                                goto Casino;
+                            }
 
                             // check for valid gamble amount
                             if (gambleAmount > wallet)
