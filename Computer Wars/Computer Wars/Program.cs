@@ -80,6 +80,7 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.Prices();
                         doTask.DisplayParts(partsList);
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -97,6 +98,8 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.BuyParts();
                         doTask.DisplayParts(partsList);
+                        Console.WriteLine("\n\nThis function has not been implemented.");
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -105,6 +108,8 @@ namespace Test_Wars
                         Console.Clear();
                         printArt.SellParts();
                         doTask.DisplayParts(partsList);
+                        Console.WriteLine("\n\nThis function has not been implemented.");
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -112,7 +117,8 @@ namespace Test_Wars
                     case 5: //BANK
                         Console.Clear();
                         printArt.Bank();
-                        Console.WriteLine("\n\nThis function has not been implemented. Press any key to return to the menu.");
+                        Console.WriteLine("\n\nThis function has not been implemented.");
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -120,7 +126,8 @@ namespace Test_Wars
                     case 6: //CASINO
                         Console.Clear();
                         printArt.Casino();
-                        Console.WriteLine("\n\nThis function has not been implemented. Press any key to return to the menu.");
+                        Console.WriteLine("\n\nThis function has not been implemented.");
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
                         Console.ReadKey();
                         Console.Clear();
                         break;

@@ -13,7 +13,7 @@ namespace Computer_Wars.Tasks
         {
             Dictionary<string, int> inventory = new Dictionary<string, int>()
             {
-                { "Processors", 1},
+                { "Processors", 0},
                 { "Graphics Cards", 0},
                 { "Hard Drives",0},
                 { "RAM Cards",0},
