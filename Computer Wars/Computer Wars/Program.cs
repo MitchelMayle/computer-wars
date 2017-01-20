@@ -3,216 +3,151 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Computer_Wars.Events;
-using Computer_Wars.Graphics;
+using Computer_Wars.ArtFiles;
+using Computer_Wars.Tasks;
 
-
-namespace Computer_Wars
+namespace Test_Wars
 {
     class Program
     {
         static void Main(string[] args)
         {
+            // initialize art and tasks
+            ArtFiles printArt = new ArtFiles();
+            Tasks doTask = new Tasks();
 
-
-
-            /* TO DO
-             * 
-             * -Create choice class to use method on choice given
-             * 
-               - Develop system for random events in between days
-                    -- neighbor stealing half of items (10%)
-                    -- neighbor stealing identity (5%)
-                    -- prices for items going up/down (90%)
-                        -- should all prices change every day?
-                    -- bank returning high interest (10%)
-                    -- wallet stolen at the airport (5%)
-                    -- killed in plane crash (3%)
-                    -- flight delayed, lose a day (10%)
-                    -- recover stolen money from neighbor
-                    -- gain random amount of parts for free (10%)
-
-               - Specific city events
-                    -- traffic risk in LA (50%)
-                    -- part prices low in LA chance (25%)
-                    -- gambling in vegas lower odds
-
-               - Day change tasks
-                    -- set current city
-                    -- increase dayCount
-                    -- change prices
-                    -- calculate bank interest
-                    -- reset hasGambled
-            */
-
-            // variables for methods
-            Graphics.Graphics graphicPrint = new Graphics.Graphics();
-            Events.Events eventAction = new Events.Events();
-
-            //create empty inventory
+            // initialize inventory
             Dictionary<string, int> inventory = new Dictionary<string, int>();
-            inventory = eventAction.ResetInvetory();
+            inventory = doTask.ResetInventory();
 
-            //randomize parts
+            // initialize and randomize parts prices
             Dictionary<string, int> partsList = new Dictionary<string, int>();
-            partsList = eventAction.ChangePartPrices();
+            partsList = doTask.ChangePartPrices();
 
-
-            //variable declaration
-            int wallet = 500;
-            int depositAccount = 0;
+            // initialize variables
             int dayCount = 1;
-            string currentCity = "Cleveland";
-            bool hasGambled = false;
-            bool stolenIdentity = false;
-            int stolenMoney = 0;
+            int wallet = 500;
 
-            //method to display title?
-            graphicPrint.PrintTitle();
-            Console.WriteLine("v0.1A");
-            Console.WriteLine("Created by Mitchel Mayle III");
-            Console.WriteLine("\n\n\n\n\n\n");
-            Console.Write("***** PRESS ANY KEY TO START *****");
-            Console.ReadKey();
-            Console.Clear();
+            // welcome screens
+            printArt.Title();
+            doTask.DisplaySplashPage();
 
-            // introduction, add more description and hazards
-            graphicPrint.PrintTitle();
+            // instructions screen
+            printArt.Title();
+            doTask.DisplayInstructions();
 
-            eventAction.PrintInstructions();
 
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            // method to display graphic for each day?
-            graphicPrint.PrintDayGraphic(dayCount);
-
-            // create method to hold this information to begin new day, calculate interest at beginning of day, set bools back to false
-            Console.WriteLine($"Welcome to {currentCity}! You have {30 - dayCount} days remaining.\n");
-            Console.WriteLine($"You have ${wallet} in your wallet.\n");
-            Console.WriteLine($"Your bank account has a balance of ${depositAccount}.\n");
-            Console.WriteLine($"Please make a selection (by number):\n");
-
-            // create method to display choices
-            Console.WriteLine("1. Check today's prices of parts");
-            Console.WriteLine("2. Check inventory at your house");
-            Console.WriteLine("3. Buy parts");
-            Console.WriteLine("4. Sell parts");
-            Console.WriteLine("5. Deposit money at bank");
-            Console.WriteLine($"6. Gamble at the {currentCity} casino");
-            Console.WriteLine("7. Fly to a new city\n");
-            Console.WriteLine("Type \"EXIT\" to end the game");
-
-            Console.Write("Selection #: ");
-            string daySelect = Console.ReadLine();
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            // create method to display prices
-            graphicPrint.PartPrices();
-            Console.WriteLine($"Today's part prices in {currentCity}:\n");
-
-            foreach (KeyValuePair<string, int> kvp in partsList)
+            while (dayCount < 31)
             {
-                Console.WriteLine($"{kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
-            }
+                //main menu
+                Menu:
+                Console.Clear();
+                printArt.PrintDayGraphic(dayCount);
+                Console.WriteLine($"You have {30 - dayCount} days remaining.\n");
+                Console.WriteLine($"You have ${wallet} in your wallet.\n");
+                Console.WriteLine($"Please make a selection (by number):\n");
+                Console.WriteLine("1. Check today's prices of parts");
+                Console.WriteLine("2. Check inventory at your house");
+                Console.WriteLine("3. Buy parts");
+                Console.WriteLine("4. Sell parts");
+                Console.WriteLine("5. Deposit money at bank");
+                Console.WriteLine("6. Gamble at the casino");
+                Console.WriteLine("7. Fly to a new city\n");
+                Console.WriteLine("Type \"EXIT\" to end the game\n");
+                Console.Write("Selection #: ");
 
-            Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                string menuInput = Console.ReadLine();
 
-            //pause
-            Console.ReadKey();
+                // exits when exit is typed
+                if (menuInput.ToUpper() == "EXIT")
+                {
+                    break;
+                }
+
+                // checks for valid input choice not "exit"
+                int menuChoice;
+                bool checkInput = int.TryParse(menuInput, out menuChoice);
+
+                // if choice is invalid, go back to Menu
+                if (!checkInput)
+                {
+                    goto Menu;
+                }
+
+                switch (menuChoice)
+                {
+                    case 1: // CHECK PRICES
+                        Console.Clear();
+                        printArt.Prices();
+                        doTask.DisplayParts(partsList);
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 2: //CHECK INVENTORY
+                        Console.Clear();
+                        printArt.Inventory();
+                        doTask.DisplayParts(inventory);
+                        Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 3: //BUY PARTS
+                        Console.Clear();
+                        printArt.BuyParts();
+                        doTask.DisplayParts(partsList);
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 4: //SELL PARTS
+                        Console.Clear();
+                        printArt.SellParts();
+                        doTask.DisplayParts(partsList);
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 5: //BANK
+                        Console.Clear();
+                        printArt.Bank();
+                        Console.WriteLine("\n\nThis function has not been implemented. Press any key to return to the menu.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 6: //CASINO
+                        Console.Clear();
+                        printArt.Casino();
+                        Console.WriteLine("\n\nThis function has not been implemented. Press any key to return to the menu.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 7: //NEW CITY
+                        Console.Clear();
+                        printArt.Airport();
+                        Console.WriteLine("\n\nFlying to a new city...........");
+                        Console.ReadKey();
+
+                        // perform tasks after day has ended
+                        partsList = doTask.ChangePartPrices();
+                        dayCount++;
+                        Console.Clear();
+                        break;
+
+                    default:
+                        goto Menu;
+                }
+
+            }//end of while loop of game
+
+            //end of game stuff
             Console.Clear();
-
-            // create method to display inventory
-            graphicPrint.Inventory();
-            Console.WriteLine("You currently have the following parts at your house:\n");
-            eventAction.Inventory(inventory);
-
-            Console.WriteLine("\n***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-
-            //pause
+            printArt.GameOver();
+            Console.WriteLine($"\n\nYou ended with ${wallet}.");
             Console.ReadKey();
-            Console.Clear();
-
-            // create method to display cities, check for current city
-            graphicPrint.Airport();
-            Console.WriteLine($"Welcome to the {currentCity} airport!");
-            Console.WriteLine("Select the city (by number) that you want to fly to: (This will end your current day and change part prices)\n");
-            Console.WriteLine("1. Cleveland");
-            Console.WriteLine("2. Pittsburgh");
-            Console.WriteLine("3. Chicago");
-            Console.WriteLine("4. Atlanta");
-            Console.WriteLine("5. Seattle");
-            Console.WriteLine("6. Las Vegas");
-            Console.WriteLine("7. Los Angeles\n");
-            Console.WriteLine("Type \"EXIT\" to return to the menu.");
-            Console.Write("City Choice #: ");
-            string cityChoice = Console.ReadLine();
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            // create method to go to bank, deposit, withdraw
-            graphicPrint.Bank();
-            Console.WriteLine($"Welcome to Generic Credit Union of {currentCity}.\n");
-            Console.WriteLine($"You have ${wallet} in your wallet.");
-            Console.WriteLine($"Your bank account contains ${depositAccount}.\n");
-            Console.WriteLine();
-            Console.Write("Would you like to make a (D)eposit, (W)ithdraw? (Type \"EXIT\" to return to the menu: ");
-            string bankChoice = Console.ReadLine();
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            // create method for casino
-            graphicPrint.Casino();
-            Console.WriteLine($"Welcome to the {currentCity} casino!\n");
-
-            Console.WriteLine("You are only permitted to gamble once per day. Choose your amount to gamble wiseley.\n");
-
-            Console.Write("Please enter a dollar amount that you would like to gamble. (Type \"EXIT\" to return to the menu): $");
-            string casinoChoice = Console.ReadLine();
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            //create method for selling items
-            graphicPrint.SellParts();
-
-            Console.WriteLine($"Today's part prices in {currentCity}:\n");
-
-            eventAction.PartList(partsList);
-
-            Console.WriteLine();
-            Console.Write("Select a part you would like to sell: (Type \"EXIT\" to return to the menu: ");
-            string sellInput = Console.ReadLine();
-            Console.Write($"Enter the number of {sellInput}s you would like to sell: ");
-            int sellNumber = int.Parse(Console.ReadLine());
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
-
-            // create method for buying items
-            graphicPrint.BuyParts();
-            eventAction.PartList(partsList);
-
-            Console.WriteLine();
-            Console.Write("Select a part you would like to purchase: (Type \"EXIT\" to return to the menu: ");
-            string buyInput = Console.ReadLine();
-            Console.Write($"Enter the number of {buyInput}s you would like to purchase: ");
-            int buyNumber = int.Parse(Console.ReadLine());
-
-
-            //pause
-            Console.ReadKey();
-            Console.Clear();
         }
     }
 }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Computer_Wars.Graphics
+namespace Computer_Wars.ArtFiles
 {
-    class Graphics
+    class ArtFiles
     {
-        public void PrintTitle()
+        public void Title()
         {
             Console.WriteLine();
             Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗  ██╗");
@@ -19,7 +19,7 @@ namespace Computer_Wars.Graphics
             Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  ╚═╝\n");
         }
 
-        public void PartPrices()
+        public void Prices()
         {
             Console.WriteLine();
             Console.WriteLine(" ██████╗  █████╗ ██████╗ ████████╗    ██████╗ ██████╗ ██╗ ██████╗███████╗███████╗");
@@ -411,6 +411,17 @@ namespace Computer_Wars.Graphics
             }
         }
 
+        public void GameOver()
+        {
+            Console.WriteLine();
+            Console.WriteLine("  ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ");
+            Console.WriteLine(" ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗");
+            Console.WriteLine(" ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝");
+            Console.WriteLine(" ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗");
+            Console.WriteLine(" ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║");
+            Console.WriteLine("  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝\n");
+        }
+
         public void GetEvent(bool isEventGood)
         {
             switch (isEventGood)
@@ -436,6 +447,6 @@ namespace Computer_Wars.Graphics
                     break;
             }
         }
+
     }
 }
-
