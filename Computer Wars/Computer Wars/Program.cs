@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Computer_Wars.ArtFiles;
-using Computer_Wars.Tasks;
+using ComputerWars.ArtFiles;
+using ComputerWars.Tasks;
 
-namespace Test_Wars
+namespace Computer_Wars
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // initialize art and tasks
-            ArtFiles printArt = new ArtFiles();
-            Tasks doTask = new Tasks();
-
             // initialize inventory
             Dictionary<string, int> inventory = new Dictionary<string, int>();
-            inventory = doTask.ResetInventory();
+            inventory = Tasks.ResetInventory();
 
             // initialize and randomize parts prices
             Dictionary<string, int> partsList = new Dictionary<string, int>();
-            partsList = doTask.ChangePartPrices();
+            partsList = Tasks.ChangePartPrices();
 
             // initialize variables
             int dayCount = 1;
-            int wallet = 500;
+            int wallet = 1000;
 
-            // welcome screens
-            printArt.Title();
-            doTask.DisplaySplashPage();
+            // welcome screen
+            ArtFiles.Title();
+            Tasks.DisplaySplashPage();
 
             // instructions screen
-            printArt.Title();
-            doTask.DisplayInstructions();
+            ArtFiles.Title();
+            Tasks.DisplayInstructions();
 
-            //game begins
-            while (dayCount < 31)
+            while(true)
             {
-                //main menu
-                Menu:
+                if (dayCount > 30)
+                {
+                    break;
+                }
+
+                // main menu
+                // TODO - Turn menu into method
                 Console.Clear();
-                printArt.PrintDayGraphic(dayCount);
+                ArtFiles.PrintDayGraphic(dayCount);
                 Console.WriteLine($" You have {30 - dayCount} days remaining.\n");
-                Console.WriteLine($" You have ${wallet} in your wallet.\n");
+                Console.WriteLine($" You have {wallet.ToString("C")} in your wallet.\n");
                 Console.WriteLine($" Please make a selection (by number):\n");
                 Console.WriteLine(" 1. Check today's prices of parts");
                 Console.WriteLine(" 2. Check inventory");
@@ -58,151 +58,351 @@ namespace Test_Wars
 
                 string menuInput = Console.ReadLine();
 
-                // exits when exit is typed
+                // exits menu when exit is typed
                 if (menuInput.ToUpper() == "EXIT")
                 {
                     break;
                 }
 
-                // checks for valid input choice not "exit"
-                int menuChoice;
-                bool checkInput = int.TryParse(menuInput, out menuChoice);
+                // menu options
 
-                // if choice is invalid, go back to Menu
-                if (!checkInput)
+                // display part prices
+                if (menuInput == "1")
                 {
-                    goto Menu;
+                    Console.Clear();
+                    ArtFiles.Prices();
+                    Tasks.DisplayPrices(partsList);
+                    Console.WriteLine("\n\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
 
-                // menu options
-                switch (menuChoice)
+                // check inventory
+                if (menuInput == "2")
                 {
-                    case 1: // CHECK PRICES
-                        Console.Clear();
-                        printArt.Prices();
-                        doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    Console.Clear();
+                    ArtFiles.Inventory();
+                    Tasks.DisplayInventory(inventory);
+                    Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
 
-                    case 2: //CHECK INVENTORY
-                        Console.Clear();
-                        printArt.Inventory();
-                        doTask.DisplayParts(inventory);
-                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                // buy parts
+                // TODO - turn buy parts action into method
+                if (menuInput == "3")
+                {
+                    Console.Clear();
+                    ArtFiles.BuyParts();
+                    Tasks.DisplayPrices(partsList);
 
-                    case 3: //BUY PARTS
-                        Console.Clear();
-                        printArt.BuyParts();
-                        doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n\n This function has not been implemented.");
-                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    Console.Write("\n Enter the number for the part you wish to purchase: ");
+                    string buyPartChoice = Console.ReadLine();
 
-                    case 4: //SELL PARTS
-                        Console.Clear();
-                        printArt.SellParts();
-                        doTask.DisplayParts(partsList);
-                        Console.WriteLine("\n\n This function has not been implemented.");
-                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    Console.Write(" How many do you want to purchase? ");
+                    int buyNumberOfParts = int.Parse(Console.ReadLine());
 
-                    case 5: //BANK
-                        Console.Clear();
-                        printArt.Bank();
-                        Console.WriteLine("\n\n This function has not been implemented.");
-                        Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    // buy processors
+                    if (buyPartChoice == "1")
+                    {
+                        int partCost = partsList["Processors"];
 
-                    case 6: //CASINO
-                        Casino:
-                        Console.Clear();
-                        printArt.Casino();
-                        Console.WriteLine($"\n You currently have ${wallet} in your wallet.");
-
-                        int gambleAmount;
-
-                        while (true)
+                        if (buyNumberOfParts * partCost > wallet)
                         {
-                            Console.Write("\n Enter the amount that you would like to gamble: $");
-
-                            string gambleInput;
-                            gambleInput = Console.ReadLine();
-
-                            // checking for valid int input
-                            checkInput = int.TryParse(gambleInput, out gambleAmount);
-
-                            if (!checkInput)
-                            {
-                                goto Casino;
-                            }
-
-                            // check for valid gamble amount
-                            if (gambleAmount > wallet)
-                            {
-                                Console.WriteLine($" You do not have ${gambleAmount}, you have ${wallet}.\n");
-                            }
-                            else
-                            {
-                                break;
-                            }
+                            Tasks.NotEnoughMoney();
                         }
-
-                        // new random percentage of chance
-                        Random gambleRandom = new Random();
-                        int gambleOdds = gambleRandom.Next(1, 101);
-
-                        if (gambleOdds > 60)
-                        {
-                            int gambleWinnings = gambleRandom.Next(gambleAmount / 2, gambleAmount);
-                            wallet += gambleWinnings;
-                            Console.WriteLine($" YOU WON! You risked ${gambleAmount} and won ${gambleWinnings}.");
-
-                        }
-
                         else
                         {
-                            Console.WriteLine($" OH NO! You lost ${gambleAmount}.");
-                            wallet -= gambleAmount;
+                            int totalCost = partCost * buyNumberOfParts;
+                            inventory["Processors"] += buyNumberOfParts;
+                            wallet -= totalCost;
+                            Console.WriteLine($"\n You purchased {buyNumberOfParts} processors for {totalCost.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
                         }
+                    }
 
+                    // buy GPU
+                    if (buyPartChoice == "2")
+                    {
+                        int partCost = partsList["Graphics Cards"];
 
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                        if (buyNumberOfParts * partCost > wallet)
+                        {
+                            Tasks.NotEnoughMoney();
+                        }
+                        else
+                        {
+                            int totalCost = partCost * buyNumberOfParts;
+                            inventory["Graphics Cards"] += buyNumberOfParts;
+                            wallet -= totalCost;
+                            Console.WriteLine($"\n You purchased {buyNumberOfParts} graphics cards for {totalCost.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
 
-                    case 7: //NEW CITY
-                        Console.Clear();
-                        printArt.Airport();
-                        Console.WriteLine("\n\n Flying to a new city...........");
-                        Console.ReadKey();
+                    // buy hard drives
+                    if (buyPartChoice == "3")
+                    {
+                        int partCost = partsList["Hard Drives"];
 
-                        // perform tasks after day has ended
-                        partsList = doTask.ChangePartPrices();
-                        dayCount++;
-                        Console.Clear();
-                        break;
+                        if (buyNumberOfParts * partCost > wallet)
+                        {
+                            Tasks.NotEnoughMoney();
+                        }
+                        else
+                        {
+                            int totalCost = partCost * buyNumberOfParts;
+                            inventory["Hard Drives"] += buyNumberOfParts;
+                            wallet -= totalCost;
+                            Console.WriteLine($"\n You purchased {buyNumberOfParts} hard drives for {totalCost.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
 
-                    default:
-                        goto Menu;
+                    // buy ram sticks
+                    if (buyPartChoice == "4")
+                    {
+                        int partCost = partsList["RAM Sticks"];
+
+                        if (buyNumberOfParts * partCost > wallet)
+                        {
+                            Tasks.NotEnoughMoney();
+                        }
+                        else
+                        {
+                            int totalCost = partCost * buyNumberOfParts;
+                            inventory["RAM Sticks"] += buyNumberOfParts;
+                            wallet -= totalCost;
+                            Console.WriteLine($"\n You purchased {buyNumberOfParts} RAM sticks for {totalCost.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                    // buy flash drives
+                    if (buyPartChoice == "5")
+                    {
+                        int partCost = partsList["Flash Drives"];
+
+                        if (buyNumberOfParts * partCost > wallet)
+                        {
+                            Tasks.NotEnoughMoney();
+                        }
+                        else
+                        {
+                            int totalCost = partCost * buyNumberOfParts;
+                            inventory["Flash Drives"] += buyNumberOfParts;
+                            wallet -= totalCost;
+                            Console.WriteLine($"\n You purchased {buyNumberOfParts} flash drives for {totalCost.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
                 }
 
-            }//end of while loop of game
+                // sell parts
+                // TODO - show current inventory beside part prices
+                // TODO - turn sell parts action into method
+                if (menuInput == "4")
+                {
+                    Console.Clear();
+                    ArtFiles.SellParts();
+                    Tasks.DisplayPrices(partsList);
 
-            //end of game stuff
+                    Console.Write("\n Enter the number for the part you wish to sell: ");
+                    string buyPartChoice = Console.ReadLine();
+
+                    Console.Write(" How many do you want to sell? ");
+                    int sellNumberOfParts = int.Parse(Console.ReadLine());
+
+                    // sell processors
+                    if (buyPartChoice == "1")
+                    {
+                        int partCost = partsList["Processors"];
+
+                        if (sellNumberOfParts > inventory["Processors"])
+                        {
+                            Tasks.NotEnoughInInventory("Processors");
+                        }
+                        else
+                        {
+                            int totalRevenue = sellNumberOfParts * partCost;
+                            inventory["Processors"] -= sellNumberOfParts;
+                            wallet += totalRevenue;
+                            Console.WriteLine($"\n You sold {sellNumberOfParts} processors for {totalRevenue.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                    // sell graphics cards
+                    if (buyPartChoice == "2")
+                    {
+                        int partCost = partsList["Graphics Cards"];
+
+                        if (sellNumberOfParts > inventory["Graphics Cards"])
+                        {
+                            Tasks.NotEnoughInInventory("Graphics Cards");
+                        }
+                        else
+                        {
+                            int totalRevenue = sellNumberOfParts * partCost;
+                            inventory["Graphics Cards"] -= sellNumberOfParts;
+                            wallet += totalRevenue;
+                            Console.WriteLine($"\n You sold {sellNumberOfParts} graphics cards for {totalRevenue.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                    // sell hard drives
+                    if (buyPartChoice == "3")
+                    {
+                        int partCost = partsList["Hard Drives"];
+
+                        if (sellNumberOfParts > inventory["Hard Drives"])
+                        {
+                            Tasks.NotEnoughInInventory("Hard Drives");
+                        }
+                        else
+                        {
+                            int totalRevenue = sellNumberOfParts * partCost;
+                            inventory["Hard Drives"] -= sellNumberOfParts;
+                            wallet += totalRevenue;
+                            Console.WriteLine($"\n You sold {sellNumberOfParts} hard drives for {totalRevenue.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                    // sell ram sticks
+                    if (buyPartChoice == "4")
+                    {
+                        int partCost = partsList["RAM Sticks"];
+
+                        if (sellNumberOfParts > inventory["RAM Sticks"])
+                        {
+                            Tasks.NotEnoughInInventory("RAM Sticks");
+                        }
+                        else
+                        {
+                            int totalRevenue = sellNumberOfParts * partCost;
+                            inventory["RAM Sticks"] -= sellNumberOfParts;
+                            wallet += totalRevenue;
+                            Console.WriteLine($"\n You sold {sellNumberOfParts} ram sticks for {totalRevenue.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                    // sell flash drives
+                    if (buyPartChoice == "5")
+                    {
+                        int partCost = partsList["Flash Drives"];
+
+                        if (sellNumberOfParts > inventory["Flash Drives"])
+                        {
+                            Tasks.NotEnoughInInventory("Flash Drives");
+                        }
+                        else
+                        {
+                            int totalRevenue = sellNumberOfParts * partCost;
+                            inventory["Flash Drives"] -= sellNumberOfParts;
+                            wallet += totalRevenue;
+                            Console.WriteLine($"\n You sold {sellNumberOfParts} flash drives for {totalRevenue.ToString("C")}.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+
+                } // end of selling
+
+                // bank
+                // TODO - create deposit and interest logic
+                // TODO - turn bank action into method
+                if (menuInput == "5")
+                {
+                    Console.Clear();
+                    ArtFiles.Bank();
+                    Console.WriteLine("\n\n This function has not been implemented.");
+                    Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+
+                // casino
+                // TODO - turn casino into method
+                if (menuInput == "6")
+                {
+                    Console.Clear();
+                    ArtFiles.Casino();
+                    Console.WriteLine($"\n You currently have {wallet.ToString("C")} in your wallet.");
+                    int gambleAmount;
+
+                    while (true)
+                    {
+                        Console.Write("\n Enter the amount that you would like to gamble: $");
+
+                        gambleAmount = int.Parse(Console.ReadLine());
+                        
+                        // check for valid gamble amount
+                        if (gambleAmount > wallet / 2)
+                        {
+                            Console.WriteLine(" You can only gamble half of the amount in your wallet.\n");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    // new random percentage of chance
+                    Random gambleRandom = new Random();
+                    int gambleOdds = gambleRandom.Next(1, 101);
+
+                    // if won
+                    if (gambleOdds > 55)
+                    {
+                        int gambleWinnings = gambleRandom.Next(gambleAmount / 2, gambleAmount * 2);
+                        wallet += gambleWinnings;
+                        Console.WriteLine($" YOU WON! You risked {gambleAmount.ToString("C")} and won {gambleWinnings.ToString("C")}.");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine($" OH NO! You lost {gambleAmount.ToString("C")}.");
+                        wallet -= gambleAmount;
+                    }
+
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+
+                // new city
+                if (menuInput == "7")
+                {
+                    Console.Clear();
+                    ArtFiles.Airport();
+                    Console.WriteLine("\n\n Flying to a new city...........");
+                    Console.ReadKey();
+
+                    // perform tasks after day has ended
+                    partsList = Tasks.ChangePartPrices();
+                    dayCount++;
+                    Console.Clear();
+                }
+
+
+            } // end of game while loops
+
             Console.Clear();
-            printArt.GameOver();
-            Console.WriteLine($"\n\n You ended with ${wallet}.");
+            ArtFiles.GameOver();
+            Console.WriteLine($"\n\n You ended with {wallet.ToString("C")} and the following parts:\n\n");
+            Tasks.DisplayInventory(inventory);
+            Console.WriteLine("\n\n\n\n");
             Console.ReadKey();
         }
     }

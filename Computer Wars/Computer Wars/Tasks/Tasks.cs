@@ -4,27 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Computer_Wars.Tasks
+namespace ComputerWars.Tasks
 {
-    class Tasks
+    public static class Tasks
     {
         // initialize/reset inventory
-        public Dictionary<string, int> ResetInventory()
+        public static Dictionary<string, int> ResetInventory()
         {
             Dictionary<string, int> inventory = new Dictionary<string, int>()
             {
                 { "Processors", 0},
                 { "Graphics Cards", 0},
                 { "Hard Drives",0},
-                { "RAM Cards",0},
+                { "RAM Sticks",0},
                 { "Flash Drives", 0}
             };
             return inventory;
         }
 
-
         // randomize part list
-        public Dictionary<string, int> ChangePartPrices()
+        public static Dictionary<string, int> ChangePartPrices()
         {
             Random changePrice = new Random();
             int cpuPrice = changePrice.Next(1500, 4001);
@@ -38,7 +37,7 @@ namespace Computer_Wars.Tasks
                 {"Processors", cpuPrice},
                 {"Graphics Cards", gpuPrice},
                 {"Hard Drives",hddPrice},
-                {"RAM Cards",ramPrice},
+                {"RAM Sticks",ramPrice},
                 {"Flash Drives", fshPrice}
             };
 
@@ -46,9 +45,9 @@ namespace Computer_Wars.Tasks
         }
 
         // version and name first page
-        public void DisplaySplashPage()
+        public static void DisplaySplashPage()
         {
-            Console.WriteLine(" v0.21A");
+            Console.WriteLine(" v0.9B");
             Console.WriteLine(" Created by Mitchel Mayle III");
             Console.WriteLine("\n\n\n\n\n\n");
             Console.Write(" ***** PRESS ANY KEY TO START *****");
@@ -57,7 +56,7 @@ namespace Computer_Wars.Tasks
         }
 
         // instructions
-        public void DisplayInstructions()
+        public static void DisplayInstructions()
         {
             Console.WriteLine();
             Console.WriteLine(" You have 30 days to travel between cities to buy and sell computer parts to accumulate as much money as you can.\n");
@@ -69,14 +68,47 @@ namespace Computer_Wars.Tasks
             Console.Clear();
         }
 
-        // print parts or inventory list
-        public void DisplayParts(Dictionary<string, int> partsList)
+        // print parts prices
+        public static void DisplayPrices(Dictionary<string, int> partsList)
         {
+            int i = 1;
+
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
-                Console.WriteLine($" {kvp.Key.PadRight(17)}-{kvp.Value.ToString().PadLeft(5)}");
+                Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString("C").PadLeft(4)}");
+                i++;
             }
         }
- 
+
+        // print inventory
+        public static void DisplayInventory(Dictionary<string, int> partsList)
+        {
+            int i = 1;
+
+            foreach (KeyValuePair<string, int> kvp in partsList)
+            {
+                Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString().PadLeft(4)}");
+                i++;
+            }
+        }
+
+        // not enough money
+        public static void NotEnoughMoney()
+        {
+            Console.WriteLine(" You do not have enough money.");
+            Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public static void NotEnoughInInventory(string partName)
+        {
+            Console.WriteLine($" You do not have this many {partName}.");
+            Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+
     }
 }

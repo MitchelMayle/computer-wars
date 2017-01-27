@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Computer_Wars.ArtFiles
+namespace ComputerWars.ArtFiles
 {
-    class ArtFiles
+    public class ArtFiles
     {
-        public void Title()
+       public static void Title()
         {
             Console.WriteLine();
             Console.WriteLine("  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗  ██╗");
@@ -19,7 +19,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine("  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  ╚═╝\n");
         }
 
-        public void Prices()
+        public static void Prices()
         {
             Console.WriteLine();
             Console.WriteLine(" ██████╗  █████╗ ██████╗ ████████╗    ██████╗ ██████╗ ██╗ ██████╗███████╗███████╗");
@@ -30,7 +30,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine(" ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝  ╚═╝╚═╝ ╚═════╝╚══════╝╚══════╝\n");
         }
 
-        public void Inventory()
+        public static void Inventory()
         {
             Console.WriteLine();
             Console.WriteLine(" ██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗");
@@ -43,7 +43,7 @@ namespace Computer_Wars.ArtFiles
 
         }
 
-        public void Airport()
+        public static void Airport()
         {
             Console.WriteLine();
             Console.WriteLine("  █████╗ ██╗██████╗ ██████╗  ██████╗ ██████╗ ████████╗");
@@ -54,7 +54,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine(" ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   \n");
         }
 
-        public void Bank()
+        public static void Bank()
         {
             Console.WriteLine();
             Console.WriteLine("  ██████╗     ██████╗   ██╗   ██╗   ");
@@ -65,7 +65,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine("  ╚═════╝ ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝\n");
         }
 
-        public void Casino()
+        public static void Casino()
         {
             Console.WriteLine();
             Console.WriteLine("  ██████╗ █████╗ ███████╗██╗███╗   ██╗ ██████╗ ");
@@ -76,7 +76,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine("  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ \n");
         }
 
-        public void SellParts()
+        public static void SellParts()
         {
             Console.WriteLine();
             Console.WriteLine(" ███████╗███████╗██╗     ██╗         ██████╗  █████╗ ██████╗ ████████╗███████╗");
@@ -87,7 +87,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine(" ╚══════╝╚══════╝╚══════╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝\n");
         }
 
-        public void BuyParts()
+        public static void BuyParts()
         {
             Console.WriteLine();
             Console.WriteLine(" ██████╗ ██╗   ██╗██╗   ██╗    ██████╗  █████╗ ██████╗ ████████╗███████╗");
@@ -98,7 +98,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine(" ╚═════╝  ╚═════╝    ╚═╝       ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝\n");
         }
 
-        public void PrintDayGraphic(int dayCount)
+        public static void PrintDayGraphic(int dayCount)
         {
             //Console.WriteLine(" ");
             //Console.WriteLine(" ");
@@ -411,7 +411,7 @@ namespace Computer_Wars.ArtFiles
             }
         }
 
-        public void GameOver()
+        public static void GameOver()
         {
             Console.WriteLine();
             Console.WriteLine("  ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ");
@@ -422,7 +422,7 @@ namespace Computer_Wars.ArtFiles
             Console.WriteLine("  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝\n");
         }
 
-        public void GetEvent(bool isEventGood)
+        public static void GetEvent(bool isEventGood)
         {
             switch (isEventGood)
             {
