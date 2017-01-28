@@ -8,20 +8,6 @@ namespace ComputerWars.Tasks
 {
     public static class Tasks
     {
-        // initialize/reset inventory
-        public static Dictionary<string, int> ResetInventory()
-        {
-            Dictionary<string, int> inventory = new Dictionary<string, int>()
-            {
-                { "Processors", 0},
-                { "Graphics Cards", 0},
-                { "Hard Drives",0},
-                { "RAM Sticks",0},
-                { "Flash Drives", 0}
-            };
-            return inventory;
-        }
-
         // randomize part list
         public static Dictionary<string, int> ChangePartPrices()
         {
@@ -47,7 +33,7 @@ namespace ComputerWars.Tasks
         // version and name first page
         public static void DisplaySplashPage()
         {
-            Console.WriteLine(" v0.9B");
+            Console.WriteLine(" v0.91B");
             Console.WriteLine(" Created by Mitchel Mayle III");
             Console.WriteLine("\n\n\n\n\n\n");
             Console.Write(" ***** PRESS ANY KEY TO START *****");
@@ -68,6 +54,20 @@ namespace ComputerWars.Tasks
             Console.Clear();
         }
 
+        public static void PrintMenu()
+        {
+            Console.WriteLine($" Please make a selection (by number):\n");
+            Console.WriteLine(" 1. Check today's prices of parts");
+            Console.WriteLine(" 2. Check inventory");
+            Console.WriteLine(" 3. Buy parts");
+            Console.WriteLine(" 4. Sell parts");
+            Console.WriteLine(" 5. Deposit money at bank");
+            Console.WriteLine(" 6. Gamble at the casino");
+            Console.WriteLine(" 7. Fly to a new city\n");
+            Console.WriteLine(" Type \"EXIT\" to end the game\n");
+            Console.Write(" Selection #: ");
+        }
+
         // print parts prices
         public static void DisplayPrices(Dictionary<string, int> partsList)
         {
@@ -75,7 +75,7 @@ namespace ComputerWars.Tasks
 
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
-                Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString("C").PadLeft(4)}");
+                Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString("C0").PadLeft(4)}");
                 i++;
             }
         }
@@ -101,6 +101,7 @@ namespace ComputerWars.Tasks
             Console.Clear();
         }
 
+        // requested more to sell than in inventory
         public static void NotEnoughInInventory(string partName)
         {
             Console.WriteLine($" You do not have this many {partName}.");
@@ -108,7 +109,6 @@ namespace ComputerWars.Tasks
             Console.ReadKey();
             Console.Clear();
         }
-
 
     }
 }

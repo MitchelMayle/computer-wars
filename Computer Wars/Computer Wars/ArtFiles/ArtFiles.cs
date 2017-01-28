@@ -422,21 +422,11 @@ namespace ComputerWars.ArtFiles
             Console.WriteLine("  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝\n");
         }
 
-        public static void GetEvent(bool isEventGood)
+        public static void GetEvent(string goodOrBad)
         {
-            switch (isEventGood)
+            switch (goodOrBad)
             {
-                case (false):
-                    Console.WriteLine();
-                    Console.WriteLine("  ██████╗ ██╗  ██╗    ███╗   ██╗ ██████╗     ██╗");
-                    Console.WriteLine(" ██╔═══██╗██║  ██║    ████╗  ██║██╔═══██╗    ██║");
-                    Console.WriteLine(" ██║   ██║███████║    ██╔██╗ ██║██║   ██║    ██║");
-                    Console.WriteLine(" ██║   ██║██╔══██║    ██║╚██╗██║██║   ██║    ╚═╝");
-                    Console.WriteLine(" ╚██████╔╝██║  ██║    ██║ ╚████║╚██████╔╝    ██╗");
-                    Console.WriteLine("  ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═══╝ ╚═════╝     ╚═╝\n");
-                    break;
-
-                case (true):
+                case ("good"):
                     Console.WriteLine();
                     Console.WriteLine("  ██████╗  ██████╗  ██████╗ ██████╗     ███╗   ██╗███████╗██╗    ██╗███████╗    ██╗");
                     Console.WriteLine(" ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗    ████╗  ██║██╔════╝██║    ██║██╔════╝    ██║");
@@ -444,6 +434,16 @@ namespace ComputerWars.ArtFiles
                     Console.WriteLine(" ██║   ██║██║   ██║██║   ██║██║  ██║    ██║╚██╗██║██╔══╝  ██║███╗██║╚════██║    ╚═╝");
                     Console.WriteLine(" ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝    ██║ ╚████║███████╗╚███╔███╔╝███████║    ██╗");
                     Console.WriteLine("  ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝     ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝ ╚══════╝    ╚═╝\n");
+                    break;
+
+                case ("bad"):
+                    Console.WriteLine();
+                    Console.WriteLine("  ██████╗ ██╗  ██╗    ███╗   ██╗ ██████╗     ██╗");
+                    Console.WriteLine(" ██╔═══██╗██║  ██║    ████╗  ██║██╔═══██╗    ██║");
+                    Console.WriteLine(" ██║   ██║███████║    ██╔██╗ ██║██║   ██║    ██║");
+                    Console.WriteLine(" ██║   ██║██╔══██║    ██║╚██╗██║██║   ██║    ╚═╝");
+                    Console.WriteLine(" ╚██████╔╝██║  ██║    ██║ ╚████║╚██████╔╝    ██╗");
+                    Console.WriteLine("  ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═══╝ ╚═════╝     ╚═╝\n");
                     break;
             }
         }
