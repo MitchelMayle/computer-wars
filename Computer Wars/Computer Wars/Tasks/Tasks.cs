@@ -33,7 +33,7 @@ namespace ComputerWars.Tasks
         // version and name first page
         public static void DisplaySplashPage()
         {
-            Console.WriteLine(" v0.91B");
+            Console.WriteLine(" v0.92B");
             Console.WriteLine(" Created by Mitchel Mayle III");
             Console.WriteLine("\n\n\n\n\n\n");
             Console.Write(" ***** PRESS ANY KEY TO START *****");
@@ -47,6 +47,7 @@ namespace ComputerWars.Tasks
             Console.WriteLine();
             Console.WriteLine(" You have 30 days to travel between cities to buy and sell computer parts to accumulate as much money as you can.\n");
             Console.WriteLine(" When you travel to a different city, one day will pass, and the price rate for each part will change for that day.\n");
+            Console.WriteLine(" Each time you travel, there is a chance that something good or bad will happen.\n");
             Console.WriteLine();
             Console.WriteLine();
             Console.Write(" ***** PRESS ANY KEY TO BEGIN DAY 1 *****");
@@ -73,11 +74,13 @@ namespace ComputerWars.Tasks
         {
             int i = 1;
 
+            Console.WriteLine(" [Part Prices]");
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
                 Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString("C0").PadLeft(4)}");
                 i++;
             }
+            Console.WriteLine();
         }
 
         // print inventory
@@ -85,11 +88,13 @@ namespace ComputerWars.Tasks
         {
             int i = 1;
 
+            Console.WriteLine(" [Your Inventory]");
             foreach (KeyValuePair<string, int> kvp in partsList)
             {
                 Console.WriteLine($" [{i}] {kvp.Key.PadRight(17)} -   {kvp.Value.ToString().PadLeft(4)}");
                 i++;
             }
+            Console.WriteLine();
         }
 
         // not enough money

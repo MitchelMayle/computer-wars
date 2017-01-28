@@ -88,8 +88,16 @@ namespace Computer_Wars
                     Console.Write("\n Enter the number for the part you wish to purchase: ");
                     string buyPartChoice = Console.ReadLine();
 
-                    Console.Write(" How many do you want to purchase? ");
-                    int buyNumberOfParts = int.Parse(Console.ReadLine());
+                    bool result;
+                    int buyNumberOfParts;
+
+                    do
+                    {
+                        Console.Write(" How many do you want to purchase? ");
+                        string buyInput = Console.ReadLine();
+                        result = int.TryParse(buyInput, out buyNumberOfParts);
+
+                    } while (!result);
 
                     // buy processors
                     if (buyPartChoice == "1")
@@ -112,7 +120,7 @@ namespace Computer_Wars
                     }
 
                     // buy GPU
-                    if (buyPartChoice == "2")
+                    else if (buyPartChoice == "2")
                     {
                         int partCost = partsList["Graphics Cards"];
 
@@ -132,7 +140,7 @@ namespace Computer_Wars
                     }
 
                     // buy hard drives
-                    if (buyPartChoice == "3")
+                    else if (buyPartChoice == "3")
                     {
                         int partCost = partsList["Hard Drives"];
 
@@ -152,7 +160,7 @@ namespace Computer_Wars
                     }
 
                     // buy ram sticks
-                    if (buyPartChoice == "4")
+                    else if (buyPartChoice == "4")
                     {
                         int partCost = partsList["RAM Sticks"];
 
@@ -172,7 +180,7 @@ namespace Computer_Wars
                     }
 
                     // buy flash drives
-                    if (buyPartChoice == "5")
+                    else if (buyPartChoice == "5")
                     {
                         int partCost = partsList["Flash Drives"];
 
@@ -190,6 +198,13 @@ namespace Computer_Wars
                             Console.Clear();
                         }
                     }
+
+                    else
+                    {
+                        Console.WriteLine($"\n Your item selection was not valid. Please try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
                 }
 
                 // sell parts
@@ -200,13 +215,22 @@ namespace Computer_Wars
                     Console.Clear();
                     ArtFiles.SellParts();
                     Tasks.DisplayPrices(partsList);
+                    Tasks.DisplayInventory(player.inventory);
 
                     Console.Write("\n Enter the number for the part you wish to sell: ");
                     string buyPartChoice = Console.ReadLine();
 
-                    Console.Write(" How many do you want to sell? ");
-                    int sellNumberOfParts = int.Parse(Console.ReadLine());
+                    bool result;
+                    int sellNumberOfParts;
 
+                    do
+                    {
+                        Console.Write(" How many do you want to sell? ");
+                        string buyInput = Console.ReadLine();
+                        result = int.TryParse(buyInput, out sellNumberOfParts);
+
+                    } while (!result);
+                    
                     // sell processors
                     if (buyPartChoice == "1")
                     {
@@ -228,7 +252,7 @@ namespace Computer_Wars
                     }
 
                     // sell graphics cards
-                    if (buyPartChoice == "2")
+                    else if (buyPartChoice == "2")
                     {
                         int partCost = partsList["Graphics Cards"];
 
@@ -248,7 +272,7 @@ namespace Computer_Wars
                     }
 
                     // sell hard drives
-                    if (buyPartChoice == "3")
+                    else if (buyPartChoice == "3")
                     {
                         int partCost = partsList["Hard Drives"];
 
@@ -268,7 +292,7 @@ namespace Computer_Wars
                     }
 
                     // sell ram sticks
-                    if (buyPartChoice == "4")
+                    else if (buyPartChoice == "4")
                     {
                         int partCost = partsList["RAM Sticks"];
 
@@ -288,7 +312,7 @@ namespace Computer_Wars
                     }
 
                     // sell flash drives
-                    if (buyPartChoice == "5")
+                    else if (buyPartChoice == "5")
                     {
                         int partCost = partsList["Flash Drives"];
 
@@ -307,6 +331,12 @@ namespace Computer_Wars
                         }
                     }
 
+                    else
+                    {
+                        Console.WriteLine($"\n Your item selection was not valid. Please try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
                 } // end of selling
 
                 // bank
@@ -329,13 +359,29 @@ namespace Computer_Wars
                     Console.Clear();
                     ArtFiles.Casino();
                     Console.WriteLine($"\n You currently have {player.Wallet.ToString("C0")} in your wallet.");
-                    int gambleAmount;
+                    int gambleAmount = 0;
 
                     while (true)
                     {
-                        Console.Write("\n Enter the amount that you would like to gamble: $");
+                        // can't gamble with $1 or 0
+                        if (player.Wallet < 2)
+                        {
+                            Console.WriteLine("\n\n You do not have enough money to gamble.");
+                            Console.WriteLine("\n ***** PRESS ANY KEY TO RETURN TO THE MENU *****");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        }
 
-                        gambleAmount = int.Parse(Console.ReadLine());
+                        bool result;
+
+                        do
+                        {
+                            Console.Write("\n Enter the amount that you would like to gamble: $");
+                            string gambleInput = Console.ReadLine();
+                            result = int.TryParse(gambleInput, out gambleAmount);
+
+                        } while (!result);                    
 
                         // check for valid gamble amount
                         if (gambleAmount > player.Wallet / 2)
@@ -352,7 +398,7 @@ namespace Computer_Wars
                     Random gambleRandom = new Random();
                     int gambleOdds = gambleRandom.Next(1, 101);
 
-                    // if won
+                    // if won gamble
                     if (gambleOdds > 55)
                     {
                         int gambleWinnings = gambleRandom.Next(gambleAmount / 2, gambleAmount * 2);
@@ -360,6 +406,7 @@ namespace Computer_Wars
                         Console.WriteLine($" YOU WON! You risked {gambleAmount.ToString("C0")} and won {gambleWinnings.ToString("C0")}.");
                     }
 
+                    // if lost gamble
                     else
                     {
                         Console.WriteLine($" OH NO! You lost {gambleAmount.ToString("C0")}.");
