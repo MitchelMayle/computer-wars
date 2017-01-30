@@ -83,7 +83,9 @@ namespace Computer_Wars
                 {
                     Console.Clear();
                     ArtFiles.BuyParts();
+                    Console.WriteLine($" You have {player.Wallet.ToString("C0")} in your wallet.\n");
                     Tasks.DisplayPrices(partsList);
+                    
 
                     Console.Write("\n Enter the number for the part you wish to purchase: ");
                     string buyPartChoice = Console.ReadLine();
