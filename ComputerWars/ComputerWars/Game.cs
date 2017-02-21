@@ -26,10 +26,10 @@ namespace ComputerWars
 
             Graphics.DisplayInstructions();
 
-            while (player.CurrentDay <= ThirtyDays)
-            {
-                partsList = RandomizePrices();
+            partsList = RandomizePrices();
 
+            while (player.CurrentDay <= ThirtyDays)
+            {                
                 DisplayMenu();
 
                 Console.Write(" Enter your selection: ");
@@ -171,6 +171,8 @@ namespace ComputerWars
                 Console.WriteLine(" " + part.Key.PadRight(20) + "-".PadRight(7) + part.Value.ToString("C0"));
             }
 
+            Console.WriteLine();
+
             string sellPartName = CheckInput.GetString("Enter the name of the part to sell (case sensitive):");
             int sellPartQuantity = CheckInput.GetInteger(" How many do you want to sell?");
 
@@ -234,7 +236,7 @@ namespace ComputerWars
 
             Console.WriteLine(" Traveling to a new city ... ");
             PressAnyKey();
-
+            partsList = RandomizePrices();
             player.CurrentDay++;
         }
 

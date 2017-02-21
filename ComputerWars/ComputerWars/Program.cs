@@ -11,6 +11,7 @@ namespace ComputerWars
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
+
             Game game = new Game();
             game.Run();
         }
