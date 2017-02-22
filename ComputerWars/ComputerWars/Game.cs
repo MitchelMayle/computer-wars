@@ -57,7 +57,7 @@ namespace ComputerWars
                         break;
                     case Command_EndGame:
                         EndGame();
-                        break;
+                        return;
                 }
             }
             EndGame();
@@ -272,10 +272,9 @@ namespace ComputerWars
         {
             Graphics.GameOver();
 
-            Console.Write($" You ended the game with {player.Money.ToString("C0")}.  ");
+            Console.WriteLine($" You ended the game with {player.Money.ToString("C0")}.  ");
 
             Console.ReadKey();
-            return;
         }
     }
 }
